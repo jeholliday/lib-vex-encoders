@@ -62,14 +62,14 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
   	}
   	uint16_t speed = 0;
  	  int64_t position = 0;
-  	position |= ((int64_t) bytes[0]) << 8;
-  	position |= ((int64_t) bytes[1]);
-  	position |= ((int64_t) bytes[2]) << 24;
-  	position |= ((int64_t) bytes[3]) << 16;
-  	position |= ((int64_t) bytes[6]) << 40;
-  	position |= ((int64_t) bytes[7]) << 32;
-  	speed |= ((uint16_t) bytes[4]) << 8;
-  	speed |= ((uint16_t) bytes[5]);
+  	position |= (bytes[0]) << 8;
+  	position |= (bytes[1]);
+  	position |= (bytes[2]) << 24;
+  	position |= (bytes[3]) << 16;
+  	position |= (bytes[6]) << 40;
+  	position |= (bytes[7]) << 32;
+  	speed |= (bytes[4]) << 8;
+  	speed |= (bytes[5]);
   	data[0] = torque_rotations / ((double) ticks) * ((double) position);
   	data[1] = torque_rotations / (((double) speed) * time_delta);
 }
