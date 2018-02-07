@@ -30,7 +30,7 @@ void VexEncoders::init(int encoderCount) {
           std::cout << "encoder "<< i<< " disabled terminator" << std::endl;
     	}else{
         rc_i2c_send_byte(1,0x4C);
-        std::cout << "encoder "<< i<< " enabled terminator" << std::endl;
+        std::cout << "encoder "<< i << " enabled terminator" << std::endl;
       }
     	rc_i2c_set_device_address(1, 0x30);
       std::cout << "reset bus1 to addressOx30" << std::endl;
@@ -71,15 +71,15 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
   	}
   	uint16_t speed = 0;
  	  int64_t position = 0;
-  	position |= (bytes[0]) << 8;
-  	position |= (bytes[1]);
-  	position |= (bytes[2]) << 24;
-  	position |= (bytes[3]) << 16;
-  	position |= (bytes[6]) << 40;
-  	position |= (bytes[7]) << 32;
-  	speed |= (bytes[4]) << 8;
-  	speed |= (bytes[5]);
+  	position |= ((int64_t)bytes[0]) << 8;
+  	position |= ((int64_t)bytes[1]);
+  	position |= ((int64_t)bytes[2]) << 24;
+  	position |= ((int64_t)bytes[3]) << 16;
+  	position |= ((int64_t)bytes[6]) << 40;
+  	position |= ((int64_t)bytes[7]) << 32;
+  	speed |= ((uint16_t)bytes[4]) << 8;
+  	speed |= ((uint16_t)bytes[5]);
   	data[0] = torque_rotations / ((double) ticks) * ((double) position);
   	data[1] = torque_rotations / (((double) speed) * time_delta);
-    std::cout << "encoder " << i << " position " << data[0] << " speed " << data[1] << std::endl;
+    std::cout << "encoder " << id << " position " << data[0] << " speed " << data[1] << std::endl;
 }
