@@ -10,6 +10,7 @@ extern "C" {
 #include <fcntl.h>
 #include <unistd.h>
 #include <math.h>
+#include <iostream>
 
 #include "vex-encoders/VexEncoders.h"
 
