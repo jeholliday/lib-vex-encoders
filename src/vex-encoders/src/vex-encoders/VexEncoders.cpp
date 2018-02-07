@@ -16,15 +16,23 @@ extern "C" {
 void VexEncoders::init(int encoderCount) {
     count = encoderCount;
   	rc_i2c_init(1, 0x30);
+    std::cout << "initialize bus1 to addressOx30" << std::endl;
 
   	for (int i = 0; i < count; ++i) {
     	int newAddress = ENCODER_START + i;  // TODO: We'll change this later to soft-coded addresses for each motor
     	rc_i2c_write_byte(1, 0x4D, newAddress<<1);
+      std::cout << "encoder "<< i<< " got new address" << std::endl;
     	rc_i2c_set_device_address(1, newAddress);
+      std::cout <<  "encoder "<< i<< " set new address" << std::endl;
     	if(i+1 < count) {
       		rc_i2c_send_byte(1,0x4B);
-    	}
+          std::cout << "encoder "<< i<< " disabled terminator" << std::endl;
+    	}else{
+        rc_i2c_send_byte(1,0x4C);
+        std::cout << "encoder "<< i<< " enabled terminator" << std::endl;
+      }
     	rc_i2c_set_device_address(1, 0x30);
+      std::cout << "reset bus1 to addressOx30" << std::endl;
   	}
 
 }
@@ -72,4 +80,5 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
   	speed |= (bytes[5]);
   	data[0] = torque_rotations / ((double) ticks) * ((double) position);
   	data[1] = torque_rotations / (((double) speed) * time_delta);
+    std::cout << "encoder " << i << " position " << data[0] << " speed " << data[1] << std::endl;
 }
