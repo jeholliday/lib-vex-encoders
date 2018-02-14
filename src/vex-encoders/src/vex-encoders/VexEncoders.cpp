@@ -72,7 +72,7 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
   	uint16_t speed = 0;
  	  int64_t position = 0;
   	position |= (bytes[0]) << 8;
-  	position |= ((bytes[1]);
+  	position |= (bytes[1]);
   	position |= (bytes[2]) << 24;
   	position |= (bytes[3]) << 16;
   	position |= (bytes[6]) << 40;
