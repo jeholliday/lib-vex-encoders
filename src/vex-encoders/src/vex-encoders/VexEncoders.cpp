@@ -68,7 +68,9 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
 
   	for (int i = 0; i < 8; i++) {
     	rc_i2c_read_byte(1, 0x40+i, bytes+i);
+      std::cout << std::hex << std::setfill('0') << std::setw(2) << bytes[i]<<" ";
   	}
+    std::cout<<std::endl;
   	uint16_t speed = 0;
  	  int64_t position = 0;
   	position |= (bytes[0]) << 8;
