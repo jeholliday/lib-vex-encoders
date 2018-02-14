@@ -11,6 +11,7 @@ extern "C" {
 #include <unistd.h>
 #include <math.h>
 #include <iostream>
+#include <iomanip>
 
 #include "vex-encoders/VexEncoders.h"
 
