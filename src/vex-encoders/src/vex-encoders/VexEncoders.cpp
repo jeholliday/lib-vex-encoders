@@ -85,7 +85,7 @@ void VexEncoders::getEncoderInfo(int id, double* data) {
   	data[0] = torque_rotations / ((double) ticks) * ((double) position);
   	data[1] = torque_rotations / (((double) speed) * time_delta);
     std::cout << "encoder " << id << " position " << data[0] << " speed " << data[1] << std::endl;
-    usleep(500);
+    //usleep(500);
     //std::cout << "position bits "<<bytes[6]<<" "<<bytes[7]<<" "<<bytes[2]<<" "<<bytes<<[3]<<" "<<bytes[0]<<" "<<bytes[1]<<std::endl;
     //std::cout << "speed bits "<<bytes[4]<<" "<<bytes[5]<<"\n"std::endl;
 }
